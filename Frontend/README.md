@@ -1,16 +1,87 @@
-# React + Vite
+# Frontend PetShop Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Frontend em React + Vite para o sistema de gerenciamento de animais do Pet Shop.
 
-Currently, two official plugins are available:
+## Visão geral
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Esta aplicação fornece a interface do usuário para:
 
-## React Compiler
+- login de usuário
+- listagem de animais cadastrados
+- inclusão de novo animal
+- edição de animal existente
+- exclusão de animal
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+O frontend consome a API REST do backend .NET através de requisições para `http://localhost:5006/api`.
 
-## Expanding the Oxlint configuration
+## Estrutura do projeto
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+- `src/`
+  - `App.jsx` - componente principal que gerencia login e exibição da tela de animais
+  - `Login.jsx` - formulário de autenticação e armazenamento do token JWT
+  - `Animais.jsx` - listagem de animais, exclusão e navegação para edição
+  - `FormularioAnimal.jsx` - cadastro e edição de animais
+  - `main.jsx` - ponto de entrada do React
+- `package.json` - dependências e scripts de execução
+
+## Dependências
+
+O frontend utiliza:
+
+- `react`
+- `react-dom`
+- `vite`
+- `@vitejs/plugin-react`
+- `oxlint` (linter)
+
+## Instalação
+
+No diretório `Frontend` execute:
+
+```bash
+cd Frontend
+npm install
+```
+
+## Execução em desenvolvimento
+
+Para iniciar a aplicação localmente:
+
+```bash
+npm run dev
+```
+
+A aplicação será iniciada e pode ser acessada pelo endereço fornecido pelo Vite, geralmente `http://localhost:5173`.
+
+## Funcionamento
+
+1. O usuário faz login em `http://localhost:5173`.
+2. O frontend solicita um token JWT ao backend em `POST /api/Auth/login`.
+3. Após receber o token, o frontend armazena-o em `localStorage`.
+4. As chamadas subsequentes para `Animais` usam o header `Authorization: Bearer <token>`.
+5. O usuário pode cadastrar, editar, listar e excluir animais.
+
+## Observações
+
+- O frontend atualmente consome a API no backend em `http://localhost:5006`.
+- A aplicação não implementa consulta automática ao ViaCEP para preenchimento de endereço.
+- A autenticação é obrigatória para acessar as rotas de animais.
+
+## Scripts disponíveis
+
+- `npm run dev` - inicia o servidor de desenvolvimento
+- `npm run build` - gera a build de produção
+- `npm run preview` - executa a pré-visualização da build gerada
+- `npm run lint` - executa o linter Oxlint
+
+## Requisitos
+
+- Node.js instalado
+- Backend da API em execução em `http://localhost:5006`
+
+## Ajustes futuros sugeridos
+
+- adicionar integração com ViaCEP para preenchimento automático de endereço
+- melhorar validação de formulários
+- tratar estados de carregamento e mensagens de erro de forma mais completa
+- introduzir controle de sessão mais robusto e logout automático
