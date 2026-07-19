@@ -1,0 +1,18 @@
+# Ignore build artifacts from Backend
+Backend/bin/
+Backend/obj/
+Backend/*.nuget.dgspec.json
+Backend/project.assets.json
+Backend/project.nuget.cache
+
+# Ignore frontend dependencies and build artifacts
+Frontend/node_modules/
+Frontend/dist/
+Frontend/.vite/
+Frontend/.cache/
+
+# General editor and OS files
+*.log
+.vscode/
+.idea/
+.DS_Store
