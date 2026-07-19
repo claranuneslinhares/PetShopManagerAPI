@@ -2,13 +2,18 @@
 
 Sistema completo de gerenciamento de animais para um Pet Shop, com backend em ASP.NET Core e frontend em React + Vite.
 
+## Participantes
+
+- Heliel William Da Silva
+- Maria Clara Nunes Linhares
+- Raynara Gustavo da Costa
+- Riane Ramaiane Delgado de Brito
+
 ## Visão geral
 
 O projeto consiste em:
 - um backend RESTful em .NET 10 com autenticação JWT e suporte a SQL Server via Entity Framework Core;
 - um frontend em React + Vite que consome a API e permite login, listagem, cadastro, edição e exclusão de animais.
-
-Há documentação específica do frontend em `Frontend/README.md`.
 
 Funcionalidades principais:
 - CRUD completo para animais
@@ -31,13 +36,7 @@ Funcionalidades principais:
 - `Frontend/`
   - `package.json` - dependências e scripts do frontend
   - `src/` - código React para login e gerenciamento de animais
-  - `README.md` - documentação específica do frontend em português
 - `banco_petshop.sql` - script SQL para criação do banco de dados e tabelas
-
-## Documentação adicional
-
-- `README.md` - documentação geral do projeto
-- `Frontend/README.md` - documentação específica do frontend, com instruções de uso e execução em português
 
 ## Tecnologias
 
@@ -144,7 +143,7 @@ Authorization: Bearer <jwt_token>
 
 ## Configuração e execução do frontend
 
-No diretório `Frontend` execute:
+No diretório `Frontend`, instale as dependências e execute a aplicação:
 
 ```bash
 cd Frontend
@@ -152,7 +151,41 @@ npm install
 npm run dev
 ```
 
-A aplicação React será iniciada localmente e consome os endpoints do backend em `http://localhost:5006/api`.
+A aplicação será iniciada no endereço informado pelo Vite, normalmente:
+
+```
+http://localhost:5173
+```
+
+O frontend consome a API disponível em:
+
+```
+http://localhost:5006/api
+```
+
+Fluxo de funcionamento:
+
+1. O usuário realiza login.
+2. O frontend envia as credenciais para `POST /api/Auth/login`.
+3. O backend retorna um token JWT.
+4. O token é armazenado em `localStorage`.
+5. As requisições para os endpoints de animais enviam o cabeçalho:
+
+```
+Authorization: Bearer <jwt_token>
+```
+
+Scripts disponíveis:
+
+- `npm run dev`
+- `npm run build`
+- `npm run preview`
+- `npm run lint`
+
+Requisitos:
+
+- Node.js instalado.
+- Backend em execução.
 
 ## Observações do projeto
 
